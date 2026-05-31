@@ -1,0 +1,95 @@
+RBI GUIDELINES ON DIGITAL PAYMENT FRAUD PREVENTION
+Master Circular — Customer Protection in Digital Transactions
+(Reference: RBI/2023-24/73, RBI/2022-23/101)
+
+SECTION 1: CUSTOMER LIABILITY IN UNAUTHORISED TRANSACTIONS
+
+1.1 Zero Liability
+A customer shall have zero liability where the deficiency is on part of the bank or payment system provider, irrespective of whether the transaction is reported by the customer or not.
+
+1.2 Limited Liability
+A customer shall have limited liability in cases involving third-party breach where the deficiency is neither on the part of the bank nor the customer, but lies elsewhere in the system, and the customer notifies the bank within 3 working days.
+
+1.3 Transaction Reversal SLA
+Banks must reverse/credit the amount in dispute within 10 working days of the customer reporting the unauthorised transaction.
+
+SECTION 2: STEP-UP AUTHENTICATION REQUIREMENTS
+
+2.1 Mandatory Two-Factor Authentication
+All digital payment transactions above ₹5,000 must use two-factor authentication (2FA). First factor: device PIN or biometric. Second factor: OTP via registered mobile number.
+
+2.2 Additional Verification Triggers
+Banks and payment system operators must enforce additional step-up authentication for:
+- Transactions from new devices not previously registered
+- Transactions initiated from locations inconsistent with user's transaction history
+- Transaction velocity exceeding 10 transactions in any 15-minute window
+- Transactions from IP addresses flagged in the RBI's compromised IP registry
+- Amounts exceeding 3x the user's 30-day average transaction amount
+
+2.3 New Beneficiary Cooling Period
+A mandatory 4-hour cooling period applies for first-time transactions to newly added beneficiaries for amounts exceeding ₹25,000.
+
+SECTION 3: REAL-TIME FRAUD MONITORING OBLIGATIONS
+
+3.1 Transaction Monitoring Systems
+All payment system operators processing more than 1 million transactions per month must maintain a real-time transaction monitoring system capable of:
+- Detecting velocity anomalies within 60 seconds
+- Identifying geo-location inconsistencies
+- Flagging device fingerprint anomalies
+- Generating Suspicious Transaction Reports (STRs) within 7 days
+
+3.2 Fraud Reporting to RBI
+Payment system operators must report fraud incidents exceeding ₹1 lakh to RBI CSITE within 6 hours of detection. Monthly aggregate reports must be submitted to the RBI Fraud Monitoring Group (FMG).
+
+3.3 Merchant Risk Categorisation
+Merchants must be categorised by risk tier (Low/Medium/High) based on:
+- Industry type (high-risk sectors: crypto, forex, gaming, pharmacy)
+- Chargeback ratio (>1% = Medium, >2% = High)
+- Refund-to-sales ratio
+- Age of merchant account
+- Geographic risk of operations
+
+SECTION 4: ANTI-MONEY LAUNDERING PROVISIONS
+
+4.1 Reporting Threshold — Cash Transactions
+All cash transactions above ₹10 lakh (₹10,00,000) must be reported as Cash Transaction Reports (CTRs) to FIU-IND.
+
+4.2 Suspicious Transaction Reporting
+STRs must be filed for:
+- Structuring: multiple transactions just below reporting thresholds
+- Round-tripping: funds sent and received back via different routes
+- Unusual transaction patterns inconsistent with customer profile
+- Transactions involving high-risk jurisdictions (FATF grey/blacklist)
+
+4.3 Customer Due Diligence
+Enhanced KYC required for:
+- Politically Exposed Persons (PEPs)
+- High-risk countries
+- Accounts with unusual activity patterns post-onboarding
+
+SECTION 5: REFUND AND CHARGEBACK CONTROLS
+
+5.1 Refund Frequency Limits
+Payment operators must implement controls to limit refund frequency:
+- Maximum 3 refunds per user per merchant per 24-hour period
+- Maximum ₹50,000 in refunds per user per day without manual review
+
+5.2 Merchant Liability for Fraud Chargebacks
+Where merchant fraud is established, the acquiring bank is liable to reimburse the customer. Merchants with chargeback ratios above 2% are placed on enhanced monitoring.
+
+SECTION 6: INCIDENT RESPONSE
+
+6.1 Containment SLA
+Upon detection of a fraud pattern:
+- Accounts must be flagged within 5 minutes
+- Step-up authentication must be enforced within 15 minutes
+- Account suspension (if warranted) within 30 minutes
+- Customer notification within 60 minutes
+
+6.2 Investigation and Documentation
+All fraud investigations must be documented with:
+- Transaction timeline
+- Fraud indicators observed
+- Actions taken
+- Customer communication log
+Retained for minimum 5 years per RBI record-keeping norms.

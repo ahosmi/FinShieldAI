@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-card: #0f1629;
+  --accent-blue: #00d4ff;
+  --accent-green: #00ff88;
+  --accent-red: #ff3366;
+  --accent-yellow: #ffd700;
+  --accent-purple: #a855f7;
+  --border-glow: rgba(0, 212, 255, 0.2);
+  --text-primary: #e2e8f0;
+  --text-muted: #64748b;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-glow); border-radius: 2px; }
+
+.glow-blue  { box-shadow: 0 0 20px rgba(0, 212, 255, 0.15); }
+.glow-red   { box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);  }
+.glow-green { box-shadow: 0 0 20px rgba(0, 255, 136, 0.15); }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.badge-block     { background: rgba(255,51,102,0.15);  color: #ff3366; border: 1px solid rgba(255,51,102,0.4);  }
+.badge-challenge { background: rgba(255,165,0,0.15);   color: #ffa500; border: 1px solid rgba(255,165,0,0.4);   }
+.badge-monitor   { background: rgba(255,215,0,0.15);   color: #ffd700; border: 1px solid rgba(255,215,0,0.4);   }
+.badge-allow     { background: rgba(0,255,136,0.15);   color: #00ff88; border: 1px solid rgba(0,255,136,0.4);   }

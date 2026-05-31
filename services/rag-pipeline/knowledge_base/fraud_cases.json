@@ -1,0 +1,74 @@
+[
+  {
+    "case_id": "FR-2023-001",
+    "fraud_type": "VELOCITY_ABUSE",
+    "summary": "User made 47 UPI transactions totalling ₹2.3L within 8 minutes targeting 3 food delivery merchants.",
+    "pattern": "Rapid repeated small-value UPI transfers to a cluster of merchants, all within a narrow time window. Transaction intervals averaged 10 seconds.",
+    "indicators": "txn_count_5m > 20, amounts between ₹100-499, same merchant cluster, consistent device and IP",
+    "outcome": "Account blocked. ₹2.1L recovered. User confirmed compromised credentials via SIM swap.",
+    "recommendation": "Block immediately. Initiate SIM swap verification. Notify account holder via registered email."
+  },
+  {
+    "case_id": "FR-2023-002",
+    "fraud_type": "DEVICE_SWITCHING",
+    "summary": "A single savings account was accessed from 6 distinct device fingerprints in 12 minutes, each initiating a wallet transfer.",
+    "pattern": "Attacker used automated tooling to cycle through multiple emulated device IDs, bypassing single-device session limits.",
+    "indicators": "unique_devices_5m >= 5, wallet transfers, varying IP subnets, amounts ₹5K-₹50K",
+    "outcome": "₹1.8L transferred before detection. Two transactions reversed. Legal case filed.",
+    "recommendation": "Step-up authentication after 2nd unique device in session. Require OTP re-verification for each new device."
+  },
+  {
+    "case_id": "FR-2023-003",
+    "fraud_type": "GEO_IMPOSSIBLE",
+    "summary": "User transacted in Mumbai at 14:30 IST and then in London at 14:55 IST — 25 minutes apart, physically impossible travel.",
+    "pattern": "Account credentials stolen and used internationally while the legitimate user was active domestically. Classic account takeover pattern.",
+    "indicators": "geo_distance_km > 6000 within 30 minutes, international IP, high-value netbanking transfer",
+    "outcome": "International transaction blocked automatically. Account frozen. Fraud confirmed.",
+    "recommendation": "Auto-block transactions from geographically impossible locations. Apply 24-hour cooling period for international transfers on compromised accounts."
+  },
+  {
+    "case_id": "FR-2023-004",
+    "fraud_type": "REFUND_CYCLING",
+    "summary": "Colluding user and merchant executed 18 pay-then-refund cycles over 2 hours to extract ₹4.5L from a promotional cashback scheme.",
+    "pattern": "User pays merchant → merchant issues refund → user claims cashback from platform. Repeated until limit hit. Merchant was a shell company.",
+    "indicators": "refund_count_1hr > 8, same merchant_id repeated, transaction_type alternating PAYMENT/REFUND, cashback claims",
+    "outcome": "Merchant account frozen. Cashback reversed. User KYC escalated to RBI.",
+    "recommendation": "Limit refunds to 3 per merchant per day per user. Flag merchant accounts with refund rates > 10%."
+  },
+  {
+    "case_id": "FR-2023-005",
+    "fraud_type": "BOT_ACTIVITY",
+    "summary": "Automated bot network generated 12,000 micro-transactions of exactly ₹1 each to test stolen card numbers for validity.",
+    "pattern": "Classic card-testing attack. Round-number amounts, zero geolocation, consistent internal IP, sub-second transaction intervals.",
+    "indicators": "amount == round number, geo_lat=0, geo_lon=0, ip_address internal range, interval < 1 second",
+    "outcome": "2,847 valid cards identified before detection. All flagged accounts notified. IP range blocked.",
+    "recommendation": "CAPTCHA on payment initiation after 3 failed attempts. Rate-limit API to 1 transaction/second per IP."
+  },
+  {
+    "case_id": "FR-2023-006",
+    "fraud_type": "MULE_ACCOUNT",
+    "summary": "Network of 23 mule accounts each receiving ₹9,800 deposits from a common source account, totalling ₹2.25L, all within 45 minutes.",
+    "pattern": "Structuring attack — amounts deliberately kept below ₹10,000 to evade mandatory reporting thresholds. Funds moved onward within 2 hours.",
+    "indicators": "amount 9000-9999, multiple rapid deposits to distinct accounts from single source, immediate onward transfers",
+    "outcome": "Source account blocked. All 23 mule accounts frozen per PMLA Section 3. STR filed with FIU-IND.",
+    "recommendation": "Apply graph-based analysis to detect fan-out patterns from a single source. File STR for structuring patterns per RBI Master Circular."
+  },
+  {
+    "case_id": "FR-2023-007",
+    "fraud_type": "NIGHT_ANOMALY",
+    "summary": "Dormant account (last used 6 months ago) initiated a ₹3.8L NEFT transfer at 03:17 IST to a newly registered beneficiary.",
+    "pattern": "Account takeover followed by off-hours large transfer to a beneficiary added in the same session. Classic ATO + fund drainage.",
+    "indicators": "hour_of_day in [1,2,3,4], amount > ₹50,000, new beneficiary added same session, dormant account",
+    "outcome": "Transfer intercepted at NEFT clearing. Account frozen. Password reset forced.",
+    "recommendation": "Mandatory 4-hour cooling period for new beneficiaries. Block large transfers from dormant accounts between 00:00–06:00 IST."
+  },
+  {
+    "case_id": "FR-2023-008",
+    "fraud_type": "MERCHANT_FRAUD",
+    "summary": "Newly onboarded merchant processed ₹28L in 3 hours before any legitimate product/service was verified. Merchant KYC was forged.",
+    "pattern": "Fraudster onboarded a fake merchant, routed payments through it from compromised user accounts, then attempted settlement withdrawal.",
+    "indicators": "merchant age < 7 days, transaction_volume spike > 500% of category baseline, no historical chargebacks yet",
+    "outcome": "Settlement frozen. Merchant account deactivated. FIR filed.",
+    "recommendation": "Hold settlements for new merchants for 7 days. Cap daily transaction volume at ₹1L for first 30 days."
+  }
+]
